@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 class RegistrationForm(forms.ModelForm):
-    confirm = forms.CharField(max_length=50, widget=forms.PasswordInput, label=_("Parol takrorlang"))
+    confirm = forms.CharField(max_length=50, widget=forms.PasswordInput, label=("Parol takrorlang"))
 
     def clean_confirm(self):
         if self.cleaned_data['confirm'] != self.cleaned_data['password']:
@@ -26,3 +26,10 @@ class RegistrationForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput
         }
+
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=50, label=("Login"), required=True)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput, label=("Parol"), required=True)
+

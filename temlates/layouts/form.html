@@ -1,5 +1,22 @@
-<form method="post" action="" enctype="multipart/form-data">
-    {{ form }}
+{% extends 'layouts/base.html' %}
 
-    <button type="submit">{{ request.title }}</button>
-</form>
+{% load crispy_forms_filters %}
+{% block content %}
+    <div class="row" style="margin-top: 25px; margin-block-end: 25px">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="card">
+            <div class="card-header">{{ request.title }}</div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                    {% csrf_token %}
+                    {{ form | crispy  }}
+                    </div>
+                    <div class="card-header card-group">
+                    <button type="submit" class="btn btn-primary ml-auto">{% if not request.button_title %}
+                        {{ request.title }}{% else %}{{ request.button_title }}{% endif %}</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
