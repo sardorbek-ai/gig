@@ -134,8 +134,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / 'static'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/upload/'
+
+MEDIA_ROOT = BASE_DIR / 'upload'
 
 AUTH_USER_MODEL = 'client.User'
 

@@ -1,10 +1,13 @@
-from .forms import RegistrationForm, LoginForm
-from django.views.generic import View
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import View, TemplateView, UpdateView
+import client.models
+from .forms import RegistrationForm, LoginForm
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -65,3 +68,18 @@ def client_logout(request):
     messages.success(request, "{} Xayir!!!!!".format(request.user.username))
     return redirect('main:index')
 
+
+class ClientProfile(LoginRequiredMixin, UpdateView):
+    model = client.models.User
+    fields = ['first_name', 'last_name', 'username', 'email', 'photo']
+    template_name = 'layouts/form.html'
+    success_url = reverse_lazy('client:profile')
+
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+
+        request.title = _("Profil")
+        request.button_title = _("Saqlash")
+
+    def get_object(self, queryset=None):
+        return self.request.user

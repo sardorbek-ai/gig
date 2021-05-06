@@ -12,5 +12,5 @@ class User(AbstractUser):
         if self.photo:
             return self.photo.url
 
-        return static("nophoto.png")
+        return static("img/no_avatar.png")
 

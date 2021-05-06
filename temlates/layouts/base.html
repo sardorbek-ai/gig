@@ -3,35 +3,48 @@
 <html lang="ru">
 <head>
     <title>GAG</title>
-    <link rel="stylesheet" href="{% static 'static/vendor/bootstrap/css/bootstrap.css' %}" />
-    <link rel="stylesheet" href="{% static 'static/vendor/bootstrap-icons/bootstrap-icons.css' %}" />
-    <link rel="stylesheet" href="{% static 'static/main/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item dropdown mr-2">
-                            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-                                <a class="dropdown-item" href="{% url 'client:logout' %}">Chiqish</a>
-                            <!-- </div> -->
-                        </li>
-                    {% else %}
-                        <li class="nav-item mr-2">
-                            <a class="nav-link btn" href="{% url 'client:login' %}">Tizimga kirish</a>
-                        </li>
-                        <li class="nav-item mr-2">
-                            <a class="nav-link btn btn-primary" style="color: white; border-radius: 15px"
-                                href="{% url 'client:registration' %}">Ro'yhatdan o'tish</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown mr-2">
+                                <a class="nav-link " href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="{{ request.user.photo }}">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'client:profile' %}">Profil</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'client:logout' %}">Chiqish</a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item mr-2">
+                                <a class="nav-link btn" href="{% url 'client:login' %}">Tizimga kirish</a>
+                            </li>
+                            <li class="nav-item mr-2">
+                                <a class="nav-link btn btn-primary" style="color: white; border-radius: 35%"
+                                    href="{% url 'client:registration' %}">Ro'yhatdan o'tish</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+    
+
+
 
 
         {% if messages %}
@@ -45,8 +58,8 @@
         </div>
         {% endif %}
         {% block content %}{% endblock %}
-    <script src="{% static 'static/vendor/jquery-3.6.js' %}"></script>
-    <script src="{% static 'static/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'static/main/js/main.js' %}"></script>
+    <script src="{% static 'vendor/jquery-3.6.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
 </body>
 </html>
