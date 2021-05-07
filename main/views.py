@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.checks import messages
+from django.contrib import messages
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View, CreateView
@@ -24,5 +24,7 @@ class UploadPost(LoginRequiredMixin, CreateView):
         request.title = _("Yuklash")
 
     def form_valid(self, form):
+        form.instance.user = self.request.user
+
         messages.success(self.request, _("Muvaffaqiyatli qo'shildi."))
         return super().form_valid(form)
