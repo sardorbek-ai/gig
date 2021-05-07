@@ -39,20 +39,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'main',
     'client',
     'temlates',
-    'crispy_forms'
+    'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
 
 ROOT_URLCONF = 'gag.urls'
@@ -70,6 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'gag.context_processors.settings'
+
             ],
         },
     },
@@ -114,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'uz'
+LANGUAGE_CODE = 'uz-Uz'
 
 TIME_ZONE = 'Asia/Tashkent'
 
@@ -132,6 +139,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'assets'
 ]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
+
+
 STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/upload/'
@@ -141,6 +154,12 @@ MEDIA_ROOT = BASE_DIR / 'upload'
 AUTH_USER_MODEL = 'client.User'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LANGUAGES = [
+    ('uz', "🇺🇿"),
+    ('ru', "🇷🇺"),
+]
+
 
 
 # Default primary key field type

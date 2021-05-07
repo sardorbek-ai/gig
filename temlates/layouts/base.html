@@ -1,4 +1,5 @@
-{% load static %}
+{% load static i18n %}
+{% get_current_language as LANGUAGES_CODE %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,28 +26,45 @@
                                 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'client:profile' %}">Profil</a>
+                                    <a class="dropdown-item" href="{% url 'client:profile' %}">{% trans 'Profil' %}</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'client:logout' %}">Chiqish</a>
+                                    <a class="dropdown-item" href="{% url 'client:logout' %}">{% trans 'Chiqish' %}</a>
                                 </div>
                             </li>
                             <li class="nav-item mr-2">
-                                <a class="nav-link btn btn-primary" style="color: white; border-radius: 15px"
-                                    href="{% url 'main:upload' %}"><i class="bi bi-arrow-bar-up"></i>Yuklash</a>
+                                <a class="nav-link btn btn-primary" style="color: white; border-radius: 18px"
+                                    href="{% url 'main:upload' %}"><i class="bi bi-arrow-bar-up"></i>{% trans 'Yuklash' %}</a>
                             </li>
+                            <div class="dropdown ml-2">
+                                {% for lang in LANGUAGES %}
+                                    {% if lang.0 != LANGUAGES_CODE %}
+                                        {% if lang.0 != 'uz' %}
+                                            <a class="nav-link dropdown lang-link" id="navbarDropdown" role="button" data-toggle="dropdown">🇺🇿</a>
+                                        {% elif lang.0 != 'ru' %}
+                                            <a class="nav-link dropdown lang-link" id="navbarDropdown" role="button" data-toggle="dropdown">🇷🇺</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a href="/uz{{ request.get_full_path|slice:'3:' }}" class="dropdown-item">🇺🇿 O'zbekcha</a>
+                                        <a href="/ru{{ request.get_full_path|slice:'3:' }}" class="dropdown-item">🇷🇺 Ruscha</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         {% else %}
                             <li class="nav-item mr-2">
-                                <a class="nav-link btn" href="{% url 'client:login' %}">Tizimga kirish</a>
+                                <a class="nav-link btn" href="{% url 'client:login' %}">{% trans 'Tizimga kirish' %}</a>
                             </li>
                             <li class="nav-item mr-2">
-                                <a class="nav-link btn btn-primary" style="color: white; border-radius: 15px"
-                                    href="{% url 'client:registration' %}">Ro'yhatdan o'tish</a>
+                                <a class="nav-link btn btn-primary" style="color: white; border-radius: 18px"
+                                    href="{% url 'client:registration' %}">{% trans "Ro'yhatdan o'tish" %}</a>
                             </li>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
     
+
+            
 
 
 
