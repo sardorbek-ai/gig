@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'gag.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dars',
+        'NAME': 'gag',
         'USER': 'root',
         'PASSWORD': 'Qwerty123$'
     }
