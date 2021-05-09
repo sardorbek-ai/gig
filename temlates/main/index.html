@@ -1,2 +1,64 @@
-{% extends 'layouts/base.html' %}
+{% extends "layouts/base.html" %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+</head>
+<body>
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-3">
+            <p style="font-size: 20px" class="text-secondary"><b>KATEGORIYALAR</b></p>
+            <div>
+                <img class="car-img" src="{% static 'img/no_avatar.jpg' %}" alt="">
+                <a class="btn" style="font-size: 12px; color: #adb5bd" href="#">KATEGORIYA 1</a>
+            </div>
+            <div>
+                <img class="car-img" src="{% static 'img/no_avatar.jpg' %}" alt="">
+                <a class="btn" style="font-size: 12px; color: #adb5bd" href="#">KATEGORIYA 2</a>
+            </div>
+            <div>
+                <img class="car-img" src="{% static 'img/no_avatar.jpg' %}" alt="">
+                <a class="btn" style="font-size: 12px; color: #adb5bd" href="#">KATEGORIYA 2</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <img src="{% static 'img/banner.gif' %}" style="width: 800px;" alt="">
+            <div class="row">
+                <div class="col-9 mt-2">
+                    <p style="font-size: 28px" class="text-secondary"><b>Qiziqarli rasmlar</b></p>
+                </div>
+                <div class="col-3 mt-2">
+                    <div class="ml-2">
+                        <img src="{% static 'img/small-banner.png' %}" style="width: 170px;" alt="">
+                    </div>
+                    <div class="ml-2 mt-3">
+                        <img src="{% static 'img/small-banner.png' %}" style="width: 170px;" alt="">
+                    </div>
+                    <div class="ml-2 mt-3">
+                        <img src="{% static 'img/small-banner.png' %}" style="width: 170px;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}
+
+</body>
+</html>
+
 
