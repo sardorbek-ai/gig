@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'client',
     'temlates',
     'crispy_forms',
-    
+    'bootstrap_pagination'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'gag.context_processors.settings'
-
+                'gag.context_processors.settings',
+                'django.template.context_processors.request',
             ],
         },
     },

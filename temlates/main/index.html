@@ -14,9 +14,14 @@
 
     <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <p style="font-size: 20px" class="text-secondary"><b>KATEGORIYALAR</b></p>
-            <div>
+                <ul>
+                    {% for category in categories %}
+                        <li><a href="#">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            <!-- <div>
                 <img class="car-img" src="{% static 'img/no_avatar.jpg' %}" alt="">
                 <a class="btn" style="font-size: 12px; color: #adb5bd" href="#">KATEGORIYA 1</a>
             </div>
@@ -27,13 +32,26 @@
             <div>
                 <img class="car-img" src="{% static 'img/no_avatar.jpg' %}" alt="">
                 <a class="btn" style="font-size: 12px; color: #adb5bd" href="#">KATEGORIYA 2</a>
-            </div>
+            </div> -->
         </div>
-        <div class="col-9">
+        {% load bootstrap_pagination %}
+        <div class="col-10">
             <img src="{% static 'img/banner.gif' %}" style="width: 800px;" alt="">
             <div class="row">
                 <div class="col-9 mt-2">
-                    <p style="font-size: 28px" class="text-secondary"><b>Qiziqarli rasmlar</b></p>
+                    {% for row in object_list %}
+                        {% if row.is_image %}
+                            <img src="{{ row.file.url }}">
+                        {% endif %}
+                        {% if row.is_video %}
+                            <video src="{{ row.file.url }}" controls></video>
+                        {% endif %}
+                        {% if row.is_audio %}
+                            <audio src="{{ row.file.url }}" controls></audio>
+                        {% endif %}
+                    {% endfor %} 
+                    {% bootstrap_paginate page_obj %}
+                    </ul>
                 </div>
                 <div class="col-3 mt-2">
                     <div class="ml-2">
